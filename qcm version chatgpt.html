@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>QCM Révision Brevet — Histoire & Géographie (3e)</title>
+<style>
+  :root{
+    --bg1: #0f172a;
+    --bg2: #0b2a4a;
+    --card: rgba(255,255,255,0.98);
+    --accent: linear-gradient(135deg,#ff7a18 0%,#af002d 50%,#319197 100%);
+    --glass: rgba(255,255,255,0.06);
+    --shadow: 0 8px 24px rgba(2,6,23,0.6);
+    --radius: 14px;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  }
+  html,body{height:100%;}
+  body{
+    margin:0;
+    background: radial-gradient(1200px 400px at 10% 10%, rgba(49,145,151,0.12), transparent),
+                linear-gradient(180deg,var(--bg1),var(--bg2));
+    color:#0b1221;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    padding:28px;
+  }
+  .wrapper{max-width:1100px;margin:0 auto;}
+  header{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:16px;margin-bottom:16px;
+  }
+  .brand{
+    display:flex;gap:12px;align-items:center;color:white;
+  }
+  .logo{
+    width:56px;height:56px;border-radius:12px;
+    background:var(--accent);box-shadow:var(--shadow);
+    display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:18px;
+  }
+  h1{margin:0;font-size:20px;color:white}
+  p.lead{margin:0;color:rgba(255,255,255,0.8)}
+  .controls{display:flex;gap:12px;align-items:center;}
+  button{
+    border:0;padding:10px 16px;border-radius:12px;font-weight:600;cursor:pointer;
+    box-shadow: 0 6px 18px rgba(2,6,23,0.45);
+  }
+  .btn-validate{background:linear-gradient(90deg,#2dd4bf,#06b6d4);color:#012; }
+  .btn-continue{background:linear-gradient(90deg,#6366f1,#8b5cf6);color:white;}
+  .btn-validate1{background:linear-gradient(90deg,#2dd4bf,#06b6d4);color:#012;;margin-bottom: 5px; margin-left: 8px;}
+  .btn-reset{background:transparent;color:white;border:1px solid rgba(255,255,255,0.12);padding:8px 12px;border-radius:10px;}
+  main{
+    margin-top:18px;
+    display:grid;
+    grid-template-columns: 1fr 360px;
+    gap:20px;
+  }
+  @media (max-width:980px){
+    main{grid-template-columns:1fr; padding-bottom:80px;}
+    .side{order:2}
+  }
+  .card{
+    background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(250,250,250,0.98));
+    border-radius:var(--radius); padding:18px; box-shadow:var(--shadow);
+  }
+  form .question{
+    border-radius:12px;padding:14px;margin-bottom:12px;background:var(--glass);border:1px solid rgba(255,255,255,0.03);
+  }
+  .q-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+  .q-theme{font-size:12px;font-weight:700;color:#083344;background:linear-gradient(90deg,#a7f3d0,#60a5fa);padding:6px 8px;border-radius:8px;}
+  .q-type{font-size:12px;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,0.12);color:#041024}
+  .q-title{font-weight:700;margin:8px 0 12px 0;color:#021025}
+  .answers{display:block;}
+  .answer{display:block;padding:10px;border-radius:10px;margin-bottom:8px;border:1px dashed rgba(1,6,12,0.06);background:white;}
+  .answer input{margin-right:10px;transform:translateY(1px)}
+  .footer{
+    display:flex;gap:12px;align-items:center;justify-content:space-between;margin-top:12px;
+  }
+  .side .card{position:sticky;top:28px}
+  .result{margin-top:12px;padding:12px;border-radius:10px}
+  .correct{background:linear-gradient(90deg,#dcfce7,#bbf7d0);border:1px solid #86efac}
+  .wrong{background:linear-gradient(90deg,#ffe4e6,#ffd6e0);border:1px solid #ff9aa2}
+  .explanation{font-size:13px;margin-top:8px;color:#042028}
+  .score{
+    font-size:20px;font-weight:800;
+    background:linear-gradient(90deg,#ff7a18 0%,#af002d 50%,#319197 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .small{font-size:13px;color:#123}
+  .muted{color:#6b7280;font-size:13px}
+  .controls-compact{display:flex;gap:8px;flex-wrap:wrap}
+  footer{margin-top:30px;color:rgba(255,255,255,0.6);font-size:13px;text-align:center}
+  /* spacing */
+  .spaced{padding:12px;border-radius:10px;margin-bottom:12px}
+  /* Result details list */
+  .detail{padding:10px;border-radius:8px;margin-top:8px;}
+  .correct-answer{font-weight:700;color:#054f3a}
+  .bad-selection{color:#7f1d1d}
+  /* ensure line breaks between answers (user requested) */
+  .answers .answer { display:block; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+  </head>
+<body>
+<div class="wrapper">
+  <header>
+    <div class="brand">
+      <div class="logo">PC³</div>
+      <div>
+        <h1>QCM Brevet — Physique-Chimie (3e)</h1>
+        <p class="lead">10 questions aléatoires à chaque essai — correction détaillée — tout en un fichier</p>
+      </div>
+    </div>
+    <div class="controls">
+      <div class="controls-compact">
+        <button id="validateBtn" class="btn-validate">Valider</button>
+        <button id="continueBtn" class="btn-continue">Continuer</button>
+        <button id="resetBtn" class="btn-reset">Réinitialiser</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="card">
+        <form id="quizForm" autocomplete="off">
+          <div id="questionsContainer"></div>
+          <div class="footer">
+            <div class="muted">10 questions tirées au sort | Choix simple = radio, choix multiple = cases à cocher</div>
+            <div class="buttons">
+              <button type="button" id="validateBtnBottom" class="btn-validate">Valider</button>
+              <button type="button" id="continueBtnBottom" class="btn-continue">Continuer</button>
+            </div>
+          </div>
+        </form>
+        <div id="resultArea" style="margin-top:16px;"></div>
+      </div>
+    </section>
+
+    <aside class="side">
+      <div class="card">
+        <h3 style="margin-top:0">Mode d'emploi rapide</h3>
+        <p class="small">Réponds aux 10 questions puis clique <strong>Valider</strong>. Ton score (sur 10) s'affiche avec la correction détaillée. Clique <strong>Continuer</strong> pour 10 nouvelles questions.</p>
+        <div style="margin-top:12px">
+          <div style="padding:12px;border-radius:10px;margin-bottom:12px">
+            <div class="small"><strong>Conseils</strong></div>
+            <ul class="muted" style="padding-left:18px;margin:8px 0">
+              <li>Lis bien les unités et les mots (ex : m/s vs km/h).</li>
+              <li>En QCM multiple, évite de cocher au hasard.</li>
+              <li>Utilise <strong>Réinitialiser</strong> pour décocher les réponses.</li>
+            </ul>
+          </div>
+          <div style="padding:12px;border-radius:10px">
+            <div class="small"><strong>Thèmes</strong></div>
+            <p class="muted" style="margin:8px 0">Électricité, Énergie, Ondes et signaux, Matière & réactions, Mouvements & forces, Astronomie, Enjeux énergétiques.</p>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <footer>
+    Fichier autonome — Questions conçues pour la révision du brevet (3e) — Tout le code dans ce fichier.
+  </footer>
+</div>
+
+<script>
+/* ===========================
+   Base de données : 100 questions
+   Chaque question : {id, theme, type: "simple"|"multiple", q, options:[], correct:[indices], explanation}
+   =========================== */
+
+const QUESTIONS = [
+  /* 1-10 : Électricité */
+  {id:1, theme:"Électricité", type:"simple", q:"Quelle est l'unité de l'intensité électrique ?", options:["Volt (V)","Ampère (A)","Ohm (Ω)","Watt (W)"], correct:[1], explanation:"L'intensité se mesure en ampères (A)."},
+  {id:2, theme:"Électricité", type:"simple", q:"Quel appareil permet de mesurer la tension électrique entre deux points ?", options:["Ampèremètre","Voltmètre","Ohmmètre","Wattmètre"], correct:[1], explanation:"Le voltmètre mesure la tension (différence de potentiel) entre deux points."},
+  {id:3, theme:"Électricité", type:"simple", q:"Dans un circuit en série, comment se comporte l'intensité ?", options:["Elle est la même dans chaque élément","Elle est plus forte dans la résistance la plus grande","Elle est nulle","Elle diminue à chaque composant"], correct:[0], explanation:"En série, l'intensité est la même en tout point du circuit."},
+  {id:4, theme:"Électricité", type:"simple", q:"La loi d'Ohm s'écrit V = R × I. Que représente R ?", options:["La résistance (Ω)","La tension (V)","L'intensité (A)","La puissance (W)"], correct:[0], explanation:"R est la résistance électrique exprimée en ohms (Ω)."},
+  {id:5, theme:"Électricité", type:"multiple", q:"Parmi ces composants, lesquels sont des dipôles passifs ?", options:["Résistance","Pile","Diode","Condensateur"], correct:[0,3], explanation:"Une résistance et un condensateur sont des dipôles passifs ; une pile est active."},
+  {id:6, theme:"Électricité", type:"simple", q:"Quel composant convertit l'énergie chimique en énergie électrique ?", options:["Ampèremètre","Pile","Résistance","Interrupteur"], correct:[1], explanation:"Une pile ou une batterie convertit l'énergie chimique en énergie électrique."},
+  {id:7, theme:"Électricité", type:"multiple", q:"Quelles grandeurs permettent de calculer la puissance électrique P = U × I ?", options:["La tension (U)","L'intensité (I)","La résistance (R)","La fréquence (f)"], correct:[0,1], explanation:"La puissance électrique se calcule par P = U × I (tension × intensité)."},
+  {id:8, theme:"Électricité", type:"simple", q:"Quelle est la conséquence d'un court-circuit entre les bornes d'une pile ?", options:["Intensité très faible","Intensité très élevée","Tension augmente","Rien ne se passe"], correct:[1], explanation:"Un court-circuit entraîne une intensité très élevée risquant d'endommager la pile."},
+  {id:9, theme:"Électricité", type:"simple", q:"Quel dispositif protège un circuit contre une surintensité ?", options:["Un condensateur","Un fusible ou disjoncteur","Un voltmètre","Un transformateur"], correct:[1], explanation:"Un fusible ou un disjoncteur coupe le circuit en cas de surintensité."},
+  {id:10, theme:"Électricité", type:"multiple", q:"Quelles sont des sources d'énergie électrique domestiques ? (plusieurs réponses possibles)", options:["Piles","Centrales thermiques","Panneaux solaires","Dynamo d'un vélo"], correct:[0,1,2,3], explanation:"Toutes ces sources peuvent produire de l'électricité (selon échelle et usage)."},
+
+  /* 11-20 : Énergie & conversions */
+  {id:11, theme:"Énergie", type:"simple", q:"Quelle est l'unité d'énergie dans le Système international ?", options:["Joule (J)","Watt (W)","Newton (N)","Ampère (A)"], correct:[0], explanation:"L'unité d'énergie est le joule (J)."},
+  {id:12, theme:"Énergie", type:"simple", q:"Comment calcule-t-on l'énergie mécanique totale d'un objet en mouvement (énergie mécanique = Ec + Ep) ?", options:["Somme de l'énergie cinétique et potentielle","Différence entre Ec et Ep","Produit de Ec et Ep","Aucune des réponses"], correct:[0], explanation:"L'énergie mécanique est la somme de l'énergie cinétique et potentielle."},
+  {id:13, theme:"Énergie", type:"multiple", q:"Parmi ces formes d'énergie, lesquelles sont renouvelables ?", options:["Solaire","Charbon","Éolien","Nucléaire"], correct:[0,2], explanation:"Solaire et éolien sont renouvelables ; charbon et nucléaire sont fossile/stock non renouvelable (nucléaire dépend des réserves)."},
+  {id:14, theme:"Énergie", type:"simple", q:"Qu'appelle-t-on rendement d'un système ?", options:["Rapport énergie utile / énergie reçue","Énergie totale reçue","Perte d'énergie seulement","Efficacité de la batterie"], correct:[0], explanation:"Le rendement est le rapport entre l'énergie utile obtenue et l'énergie fournie."},
+  {id:15, theme:"Énergie", type:"simple", q:"L'énergie chimique des aliments se transforme principalement en :", options:["Énergie électrique","Énergie chimique uniquement","Énergie mécanique et chaleur","Rayonnement ultraviolet"], correct:[2], explanation:"L'énergie chimique est transformée en énergie mécanique (mouvements) et en chaleur."},
+  {id:16, theme:"Énergie", type:"simple", q:"Quelle grandeur exprime la puissance (énergie par unité de temps) ?", options:["Joule (J)","Watt (W)","Volt (V)","Newton (N)"], correct:[1], explanation:"La puissance se mesure en watts (W), 1 W = 1 J/s."},
+  {id:17, theme:"Énergie", type:"multiple", q:"Quels dispositifs permettent de stocker de l'énergie ? (plusieurs réponses)", options:["Batterie","Volant d'inertie","Condensateur","Radiateur électrique"], correct:[0,1,2], explanation:"Batterie, volant d'inertie et condensateur stockent de l'énergie; un radiateur dissipe l'énergie en chaleur."},
+  {id:18, theme:"Énergie", type:"simple", q:"Quelle transformation d'énergie a lieu lorsqu'une lampe électrique émet de la lumière ?", options:["Énergie chimique → solaire","Énergie électrique → lumière et chaleur","Énergie cinétique → électrique","Énergie nucléaire → lumière"], correct:[1], explanation:"La lampe convertit l'énergie électrique en lumière (et en chaleur)."},
+  {id:19, theme:"Énergie", type:"simple", q:"La force de frottement transforme l'énergie mécanique principalement en :", options:["Énergie potentielle","Énergie électrique","Chaleur (énergie thermique)","Rayonnement"], correct:[2], explanation:"Les frottements transforment l'énergie mécanique en chaleur."},
+  {id:20, theme:"Énergie", type:"multiple", q:"Quelles unités peut-on utiliser pour exprimer l'énergie (plusieurs réponses) ?", options:["Joule (J)","Kilowattheure (kWh)","Watt (W)","Calorie (cal)"], correct:[0,1,3], explanation:"Joule, kWh et calorie mesurent l'énergie ; le watt mesure la puissance."},
+
+  /* 21-30 : Ondes et signaux (lumière, son) */
+  {id:21, theme:"Ondes & signaux", type:"simple", q:"Quelle est la nature du son ?", options:["Onde mécanique longitudinale","Onde électromagnétique","Particule","Onde stationnaire uniquement"], correct:[0], explanation:"Le son est une onde mécanique qui nécessite un milieu pour se propager (généralement longitudinale)."},
+  {id:22, theme:"Ondes & signaux", type:"simple", q:"La lumière est :", options:["Une onde mécanique","Une onde électromagnétique","Une force","Une particule uniquement"], correct:[1], explanation:"La lumière est une onde électromagnétique ; elle se propage dans le vide."},
+  {id:23, theme:"Ondes & signaux", type:"simple", q:"Quelle est la vitesse approximative de la lumière dans le vide ?", options:["3 × 10^6 m/s","3 × 10^8 m/s","3 × 10^5 m/s","3 × 10^3 m/s"], correct:[1], explanation:"La vitesse de la lumière dans le vide est ~3 × 10^8 m/s."},
+  {id:24, theme:"Ondes & signaux", type:"multiple", q:"Quelles grandeurs caractérisent une onde ? (plusieurs réponses)", options:["Longueur d'onde","Amplitude","Fréquence","Masse"], correct:[0,1,2], explanation:"Une onde est caractérisée par sa longueur d'onde, amplitude, fréquence (pas de masse)."},
+  {id:25, theme:"Ondes & signaux", type:"simple", q:"Le son se propage plus vite dans :", options:["Le vide","L'air","L'eau","Un solide"], correct:[3], explanation:"Le son se propage généralement plus vite dans les solides que dans les liquides et les gaz."},
+  {id:26, theme:"Ondes & signaux", type:"simple", q:"Quelle grandeur est inversement proportionnelle à la période d'une onde ?", options:["La fréquence","L'amplitude","La vitesse","La longueur d'onde"], correct:[0], explanation:"La fréquence f = 1/T (T = période)."},
+  {id:27, theme:"Ondes & signaux", type:"multiple", q:"Parmi ces phénomènes, lesquels concernent la lumière ? (plusieurs réponses)", options:["Réflexion","Réfraction","Diffraction","Ionisation"], correct:[0,1,2], explanation:"Lumière: réflexion, réfraction, diffraction (ionisation est atomique/énergétique)."},
+  {id:28, theme:"Ondes & signaux", type:"simple", q:"Quel instrument permet d'analyser les fréquences d'un signal sonore ?", options:["Spectromètre","Oscilloscope","Voltmètre","Dynamomètre"], correct:[1], explanation:"L'oscilloscope permet d'observer les signaux temporels ; un analyseur spectral ou FFT montre les fréquences."},
+  {id:29, theme:"Ondes & signaux", type:"simple", q:"Dans l'air sec, la vitesse du son est d'environ :", options:["340 m/s","3 000 m/s","34 m/s","3 400 m/s"], correct:[0], explanation:"La vitesse du son dans l'air est d'environ 340 m/s à température ambiante."},
+  {id:30, theme:"Ondes & signaux", type:"multiple", q:"Quelles sources émettent un spectre continu ? (plusieurs réponses)", options:["Une ampoule à filament","Le Soleil","Une lampe LED monochromatique","Un gaz excité"], correct:[0,1], explanation:"Une source chaude comme le filament ou le Soleil émet un spectre continu; un gaz excité émet des raies (spectre discret)."},
+
+
+  /* 31-40 : Matière & constitution (atomes, ions, molécules) */
+  {id:31, theme:"Matière", type:"simple", q:"De quelles particules est composé un atome (au sens classique) ?", options:["Protons, électrons, neutrons","Protons et photons","Neutrons uniquement","Électrons uniquement"], correct:[0], explanation:"Un atome est formé de protons, neutrons (noyau) et d'électrons (couche électronique)."},
+  {id:32, theme:"Matière", type:"multiple", q:"Quelles particules portent une charge électrique ? (plusieurs réponses)", options:["Protons (+)","Électrons (-)","Neutrons (0)","Photons (+)"], correct:[0,1], explanation:"Protons positifs, électrons négatifs; neutrons sont neutres; photons n'ont pas de charge."},
+  {id:33, theme:"Matière", type:"simple", q:"Quel est le symbole chimique de l'oxygène ?", options:["Ox","Og","O","Oxg"], correct:[2], explanation:"Le symbole chimique de l'oxygène est O."},
+  {id:34, theme:"Matière", type:"simple", q:"Que représente un ion ?", options:["Un atome qui a perdu ou gagné des électrons","Un atome isolé sans charge","Un noyau seul","Une molécule neutre"], correct:[0], explanation:"Un ion est un atome ou groupe d'atomes chargé (perte/gain d'électrons)."},
+  {id:35, theme:"Matière", type:"multiple", q:"Parmi ces symboles, lesquels représentent des molécules ? (plusieurs réponses)", options:["O2","Na+","H2O","Cl-"], correct:[0,2], explanation:"O2 et H2O sont molécules ; Na+ et Cl- sont des ions."},
+  {id:36, theme:"Matière", type:"simple", q:"Quel type de liaison unit deux atomes dans une molécule covalente ?", options:["Partage d'électrons","Transfert d'électrons complet","Interaction gravitationnelle","Force nucléaire forte"], correct:[0], explanation:"La liaison covalente résulte du partage d'électrons entre atomes."},
+  {id:37, theme:"Matière", type:"simple", q:"Comment appelle-t-on un mélange homogène liquide ? ", options:["Solution","Suspension","Colloïde","Alliage"], correct:[0], explanation:"Une solution est un mélange homogène (ex : eau sucrée)."},
+  {id:38, theme:"Matière", type:"multiple", q:"Quelles grandeurs caractérisent un gaz parfait ? (plusieurs réponses)", options:["Pression","Volume","Température","Couleur"], correct:[0,1,2], explanation:"Pression, volume et température caractérisent un gaz idéal; la couleur n'est pas une grandeur d'état thermodynamique."},
+  {id:39, theme:"Matière", type:"simple", q:"Quelle méthode sépare un mélange hétérogène solide-liquide par filtration ?", options:["Distillation","Filtration","Chromatographie","Électrolyse"], correct:[1], explanation:"La filtration permet de séparer un solide non dissous d'un liquide."},
+  {id:40, theme:"Matière", type:"simple", q:"La masse d'un atome est essentiellement concentrée dans :", options:["La couche électronique","Le noyau","Les neutrons uniquement","L'espace entre atomes"], correct:[1], explanation:"La masse de l'atome est concentrée dans le noyau (protons + neutrons)."},
+
+
+  /* 41-50 : Réactions chimiques & équations */
+  {id:41, theme:"Réactions chimiques", type:"simple", q:"Lors d'une réaction chimique, que conserve-t-on ?", options:["La nature des éléments","La masse totale (atomes)","La couleur","La température"], correct:[1], explanation:"La conservation de la masse (des atomes) est vérifiée dans une réaction chimique."},
+  {id:42, theme:"Réactions chimiques", type:"multiple", q:"Quelles conditions favorisent une réaction chimique rapide ? (plusieurs réponses)", options:["Augmentation de la température","Augmentation de la concentration en réactifs","Augmentation de la surface de contact","Diminution de la température"], correct:[0,1,2], explanation:"Augmenter T, concentration et surface de contact accélère généralement une réaction."},
+  {id:43, theme:"Réactions chimiques", type:"simple", q:"Qu'appelle-t-on un réactif limitant ?", options:["Le réactif qui reste en excès","Le réactif qui s'épuise en premier","Un catalyseur","Un produit"], correct:[1], explanation:"Le réactif limitant s'épuise en premier et limite la quantité de produit formé."},
+  {id:44, theme:"Réactions chimiques", type:"simple", q:"Quel produit obtient-on lors de la combustion complète du méthane (CH4) ?", options:["CO2 et H2O","CO et O2","C et H2","H2O seulement"], correct:[0], explanation:"Combustion complète : méthane + O2 → CO2 + H2O."},
+  {id:45, theme:"Réactions chimiques", type:"multiple", q:"Quelles sont des indications qu'une réaction chimique a eu lieu ? (plusieurs réponses)", options:["Changement de couleur","Émission de gaz","Formation d'un précipité","Simple mélange sans changement"], correct:[0,1,2], explanation:"Changement de couleur, dégagement gazeux ou précipité indiquent souvent une réaction chimique."},
+  {id:46, theme:"Réactions chimiques", type:"simple", q:"Quel rôle a un catalyseur dans une réaction chimique ?", options:["Il disparaît en début de réaction","Il accélère la réaction sans être consommé","Il change les produits","Il abaisse la température"], correct:[1], explanation:"Un catalyseur augmente la vitesse de réaction sans être consommé."},
+  {id:47, theme:"Réactions chimiques", type:"simple", q:"Lors d'une neutralisation acide-base, on obtient généralement :", options:["Eau et sel","Un gaz inflammable","Une explosion","Un métal"], correct:[0], explanation:"L'acide + base → sel + eau dans une neutralisation classique."},
+  {id:48, theme:"Réactions chimiques", type:"multiple", q:"Quelles molécules sont des oxydants courants en labo ? (plusieurs réponses)", options:["Dioxygène (O2)","Permanganate (MnO4–)","Hydrogène (H2)","Dioxyde de carbone (CO2)"], correct:[0,1], explanation:"O2 et MnO4– sont des oxydants ; H2 est réducteur, CO2 est un produit stable."},
+  {id:49, theme:"Réactions chimiques", type:"simple", q:"Que signifie 'équilibrer' une équation chimique ?", options:["Rendre le côté produits plus grand","Ajuster coefficients pour conserver les atomes","Changer les formules chimiques","Ajouter des éléments étrangers"], correct:[1], explanation:"Équilibrer consiste à ajuster les coefficients stœchiométriques pour conserver chaque type d'atome."},
+  {id:50, theme:"Réactions chimiques", type:"simple", q:"Quel est le signe d'une réaction exothermique ?", options:["Absorption de chaleur","Dégagement de chaleur","Refroidissement du milieu uniquement","Changement de couleur uniquement"], correct:[1], explanation:"Une réaction exothermique libère de la chaleur (le milieu se réchauffe)."},
+
+
+  /* 51-60 : Mouvements, forces & mécanique */
+  {id:51, theme:"Mouvement & forces", type:"simple", q:"Quelle grandeur décrit la variation de position par unité de temps ?", options:["Force","Vitesse","Masse","Énergie"], correct:[1], explanation:"La vitesse est la variation de position (distance) par unité de temps."},
+  {id:52, theme:"Mouvement & forces", type:"simple", q:"Quel instrument mesure une force ?", options:["Dynamomètre","Voltmètre","Thermomètre","Baromètre"], correct:[0], explanation:"Le dynamomètre (ou balance élastique) mesure une force."},
+  {id:53, theme:"Mouvement & forces", type:"simple", q:"Que donne la deuxième loi de Newton (F = m × a) ?", options:["La force égale masse × accélération","La vitesse égale force × temps","La masse égale accélération × force","Aucune relation"], correct:[0], explanation:"La deuxième loi de Newton relie force, masse et accélération."},
+  {id:54, theme:"Mouvement & forces", type:"multiple", q:"Quelles sont des caractéristiques d'une trajectoire rectiligne uniforme ? (plusieurs réponses)", options:["Vitesse constante","Accélération nulle","Direction changeante","Distance proportionnelle au temps"], correct:[0,1,3], explanation:"Pour un MRU, la vitesse est constante, l'accélération nulle, distance proportionnelle au temps."},
+  {id:55, theme:"Mouvement & forces", type:"simple", q:"Que fait la force de frottement sur un objet en mouvement ?", options:["Accélère l'objet","S'oppose au mouvement (freine)","Change sa masse","Rend l'objet plus léger"], correct:[1], explanation:"Les frottements s'opposent au mouvement et dissipent de l'énergie en chaleur."},
+  {id:56, theme:"Mouvement & forces", type:"simple", q:"La masse d'un objet est :", options:["La même que son poids","La quantité de matière (invariable)","Mesurée en newtons","Toujours égale à 1 kg"], correct:[1], explanation:"La masse est la quantité de matière et reste la même quel que soit le lieu (contrairement au poids)."},
+  {id:57, theme:"Mouvement & forces", type:"simple", q:"Quelle est l'unité du travail en mécanique dans le SI ?", options:["Newton (N)","Joule (J)","Watt (W)","Pascal (Pa)"], correct:[1], explanation:"Le travail se mesure en joules (J)."},
+  {id:58, theme:"Mouvement & forces", type:"multiple", q:"Quelles forces sont des forces de contact ? (plusieurs réponses)", options:["Frottement","Tension (corde)","Gravitation","Réaction normale (support)"], correct:[0,1,3], explanation:"Frottement, tension et réaction normale sont des forces de contact; la gravitation est à distance."},
+  {id:59, theme:"Mouvement & forces", type:"simple", q:"Quel est le poids d'un objet de masse 2 kg sur Terre (g ≈ 9,8 N/kg) ?", options:["≈19.6 N","≈2 N","≈9.8 N","≈0.2 N"], correct:[0], explanation:"Poids = m × g = 2 × 9,8 ≈ 19,6 N."},
+  {id:60, theme:"Mouvement & forces", type:"simple", q:"La notion d'inertie décrit la tendance d'un corps à :", options:["Changer de mouvement facilement","Garder son état de mouvement (repos ou mouvement)","Perdre de la masse","Augmenter sa vitesse sans force"], correct:[1], explanation:"L'inertie (1re loi de Newton) est la résistance à tout changement d'état de mouvement."},
+
+
+  /* 61-70 : Température & chaleur (thermique) */
+  {id:61, theme:"Thermique", type:"simple", q:"Quel instrument mesure la température ?", options:["Thermomètre","Baromètre","Voltmètre","Hygromètre"], correct:[0], explanation:"Le thermomètre mesure la température."},
+  {id:62, theme:"Thermique", type:"multiple", q:"Quelles sont des modes de transfert thermique ? (plusieurs réponses)", options:["Conduction","Convection","Rayonnement","Diffusion chimique"], correct:[0,1,2], explanation:"Conduction, convection et rayonnement sont les trois modes principaux de transfert thermique."},
+  {id:63, theme:"Thermique", type:"simple", q:"L'eau bout à 100 °C à la pression atmosphérique normale. Que se passe-t-il si la pression diminue ?", options:["Le point d'ébullition diminue","Le point d'ébullition augmente","Rien ne change","L'eau se solidifie"], correct:[0], explanation:"À pression plus faible (ex : altitude), l'eau bout à une température plus basse."},
+  {id:64, theme:"Thermique", type:"simple", q:"Quel est l'effet d'une isolation thermique efficace sur un bâtiment ?", options:["Augmente les pertes de chaleur","Diminue les pertes de chaleur","Change la masse du bâtiment","Transforme la chaleur en électricité"], correct:[1], explanation:"Une bonne isolation réduit les pertes de chaleur et donc les besoins énergétiques."},
+  {id:65, theme:"Thermique", type:"simple", q:"La chaleur se mesure en :", options:["Kelvin (K)","Joule (J)","Newton (N)","Ampère (A)"], correct:[1], explanation:"La chaleur est une énergie et se mesure en joules (J)."},
+  {id:66, theme:"Thermique", type:"multiple", q:"Quels appareils mesurent des températures ? (plusieurs réponses)", options:["Thermomètre à mercure","Thermocouple","Pyromètre (infrarouge)","Voltmètre"], correct:[0,1,2], explanation:"Thermomètre, thermocouple et pyromètre mesurent la température; voltmètre mesure la tension."},
+  {id:67, theme:"Thermique", type:"simple", q:"L'énergie interne d'un corps augmente si :", options:["On le refroidit","Il subit un travail et/ou reçoit de la chaleur","On le met en sous-vide","On le pose au repos"], correct:[1], explanation:"L'énergie interne augmente si on lui fournit de la chaleur ou qu'un travail est effectué dessus."},
+  {id:68, theme:"Thermique", type:"simple", q:"Quelle est l'échelle de température utilisée pour les calculs thermodynamiques ?", options:["Celsius (°C)","Kelvin (K)","Fahrenheit (°F)","Rankine (°R)"], correct:[1], explanation:"Le kelvin (K) est l'unité SI utilisée en calculs physiques (0 K = -273,15 °C)."},
+  {id:69, theme:"Thermique", type:"simple", q:"Le changement d'état solide → liquide s'appelle :", options:["Sublimation","Fusion","Vaporisation","Solidification"], correct:[1], explanation:"La fusion est le passage de l'état solide à l'état liquide."},
+  {id:70, theme:"Thermique", type:"multiple", q:"Quels effets augmentent la transmission de chaleur ? (plusieurs réponses)", options:["Augmenter la surface d'échange","Augmenter la différence de température","Augmenter l'épaisseur isolante","Améliorer la conduction"], correct:[0,1,3], explanation:"Surface, gradient de température et conductivité influencent le flux de chaleur; épaisseur isolante le diminue."},
+
+
+  /* 71-80 : Chimie appliquée & analyses (pH, indicateurs) */
+  {id:71, theme:"Chimie appliquée", type:"simple", q:"Le pH mesure :", options:["La concentration en ions H+ (acidité)","La température d'une solution","La masse volumique","La conductivité"], correct:[0], explanation:"Le pH indique l'acidité (concentration en ions hydrogène H+)."},
+  {id:72, theme:"Chimie appliquée", type:"multiple", q:"Quels indicateurs changent de couleur selon le pH ? (plusieurs réponses)", options:["Le papier pH","La phénolphtaléine","Le rouge de méthyle","Le mercure"], correct:[0,1,2], explanation:"Papier pH, phénolphtaléine, rouge de méthyle sont des indicateurs; le mercure n'est pas un indicateur de pH."},
+  {id:73, theme:"Chimie appliquée", type:"simple", q:"Une solution est basique si son pH est :", options:["< 7", "= 7", "> 7", "Impossible à mesurer"], correct:[2], explanation:"pH > 7 indique une solution basique (ou alcaline)."},
+  {id:74, theme:"Chimie appliquée", type:"simple", q:"Que détecte un indicateur coloré comme la phénolphtaléine ?", options:["Le pH","La pression","La température","La conductivité"], correct:[0], explanation:"Un indicateur coloré réagit aux variations du pH en changeant de couleur."},
+  {id:75, theme:"Chimie appliquée", type:"multiple", q:"Quelles sont des méthodes de séparation en chimie ? (plusieurs réponses)", options:["Distillation","Filtration","Chromatographie","Soudure"], correct:[0,1,2], explanation:"Distillation, filtration et chromatographie sont des techniques de séparation; soudure n'en est pas une."},
+  {id:76, theme:"Chimie appliquée", type:"simple", q:"L'électrolyse permet de :", options:["Séparer des ions en éléments","Mesurer la masse","Mesurer le pH","Calculer la vitesse"], correct:[0], explanation:"L'électrolyse permet de décomposer une substance ionique en éléments par passage du courant."},
+  {id:77, theme:"Chimie appliquée", type:"simple", q:"Quelle est la formule de la molédule d'eau ?", options:["CO2","H2O","O2","CH4"], correct:[1], explanation:"La formule de l'eau est H2O."},
+  {id:78, theme:"Chimie appliquée", type:"multiple", q:"Quelles espèces sont des acides selon la définition de Brønsted-Lowry ? (plusieurs réponses)", options:["HCl (donne H+)","NH3 (accepte H+)","H2SO4 (donne H+)","OH- (accepte H+)"], correct:[0,2], explanation:"Les acides sont des donneurs de protons (H+), exemples HCl, H2SO4."},
+  {id:79, theme:"Chimie appliquée", type:"simple", q:"Que mesure un conductimètre ?", options:["La concentration en ions (conductivité)","La couleur","Le pH uniquement","La masse"], correct:[0], explanation:"Un conductimètre mesure la conductivité électrique liée à la présence d'ions en solution."},
+  {id:80, theme:"Chimie appliquée", type:"simple", q:"Quel est le nom de l'ion Cl– ?", options:["Chlore","Chlorure","Chlorine","Chloral"], correct:[1], explanation:"Cl– est l'ion chlorure (chlorure d'ion)."},
+
+
+  /* 81-90 : Astronomie & espace */
+  {id:81, theme:"Astronomie", type:"simple", q:"Quelle étoile est au centre de notre système solaire ?", options:["Soleil","Sirius","Polaris","Alpha Centauri"], correct:[0], explanation:"Le Soleil est l'étoile au centre de notre système solaire."},
+  {id:82, theme:"Astronomie", type:"multiple", q:"Parmi ces objets, lesquels sont des planètes du système solaire ? (plusieurs réponses)", options:["Mars","Lune","Jupiter","Pluton"], correct:[0,2], explanation:"Mars et Jupiter sont des planètes ; la Lune est un satellite ; Pluton est classée naine (depuis 2006)."},
+  {id:83, theme:"Astronomie", type:"simple", q:"Que signifie 'année lumière' ?", options:["Durée d'une année terrestre","Distance parcourue par la lumière en un an","Vitesse de la lumière","Période orbitale"], correct:[1], explanation:"Année-lumière = distance que parcourt la lumière en une année (~9.46 × 10^12 km)."},
+  {id:84, theme:"Astronomie", type:"simple", q:"Quelle force maintient les planètes en orbite autour du Soleil ?", options:["Force électrique","Force gravitationnelle","Force nucléaire","Frottement"], correct:[1], explanation:"La gravitation attire les planètes vers le Soleil et maintient l'orbite."},
+  {id:85, theme:"Astronomie", type:"multiple", q:"Quels éléments proviennent majoritairement de l'activité stellaire (nucléosynthèse) ? (plusieurs réponses)", options:["Hydrogène","Hélium","Éléments plus lourds (carbone, oxygène)","Argile"], correct:[1,2], explanation:"Les étoiles forment de l'hélium puis, par fusion, des éléments plus lourds; l'hydrogène est primordial."},
+  {id:86, theme:"Astronomie", type:"simple", q:"Quelle est la principale cause des saisons sur Terre ?", options:["Variation de la distance Terre-Soleil","Inclinaison de l'axe de la Terre","Activité solaire","Mouvements des océans"], correct:[1], explanation:"L'inclinaison de l'axe de la Terre entraîne des saisons en modifiant l'angle d'éclairement."},
+  {id:87, theme:"Astronomie", type:"simple", q:"Qu'est-ce qu'une exoplanète ?", options:["Une planète du système solaire","Une planète hors du système solaire","Une comète","Un satellite artificiel"], correct:[1], explanation:"Une exoplanète orbite autour d'une étoile autre que le Soleil."},
+  {id:88, theme:"Astronomie", type:"simple", q:"Quel instrument permet d'observer des étoiles lointaines ?", options:["Microscope","Téléscope","Thermomètre","Sismographe"], correct:[1], explanation:"Le télescope (ou télescope) permet d'observer des objets astronomiques lointains."},
+  {id:89, theme:"Astronomie", type:"multiple", q:"Quelles affirmations sont justes au sujet de la lumière des étoiles ? (plusieurs réponses)", options:["Sa vitesse est constante dans le vide","Elle transporte de l'information sur la composition (spectre)","Elle met des années pour nous parvenir de certaines étoiles","Elle permet de mesurer la distance par parallaxe"], correct:[0,1,2,3], explanation:"Toutes ces affirmations sont correctes selon le contexte."},
+  {id:90, theme:"Astronomie", type:"simple", q:"Quel phénomène explique la formation des éléments très lourds (au delà du fer) ?", options:["Fusion lente","Capture de neutrons en supernovae ou collisions d'étoiles à neutrons","Photosynthèse","Condensation"], correct:[1], explanation:"Les éléments lourds se forment lors d'événements énergétiques comme supernovas ou collisions d'étoiles à neutrons."},
+
+
+  /* 91-100 : Développement durable, énergie & sécurité (enjeux) */
+  {id:91, theme:"Développement durable", type:"simple", q:"Quel est l'objectif principal des énergies renouvelables ?", options:["Produire de l'énergie infinie","Réduire l'empreinte carbone et utiliser des ressources renouvelables","Augmenter la pollution","Consommer plus de charbon"], correct:[1], explanation:"Les énergies renouvelables réduisent les émissions de gaz à effet de serre et utilisent des ressources qui se renouvellent."},
+  {id:92, theme:"Développement durable", type:"multiple", q:"Quelles actions permettent d'améliorer l'efficacité énergétique d'un bâtiment ? (plusieurs réponses)", options:["Isolation thermique","Changement d'orientation du bâtiment","Remplacement des fenêtres","Utilisation d'éclairage LED"], correct:[0,2,3], explanation:"Isolation, fenêtres performantes et éclairage LED réduisent la consommation ; l'orientation peut aider mais n'est pas toujours modifiable."},
+  {id:93, theme:"Sécurité", type:"simple", q:"Que signifie 'risque électrique' pour une personne ?", options:["Aucun danger","Risques d'électrocution et brûlures","Perte de poids","Augmentation de la température"], correct:[1], explanation:"Le risque électrique peut provoquer électrocution, brûlures et incendies."},
+  {id:94, theme:"Sécurité", type:"simple", q:"Lors d'une expérience chimique, que faut-il porter pour se protéger ?", options:["Rien","Lunettes de protection et gants si nécessaire","Des sandales","Un vêtement inflammable"], correct:[1], explanation:"Les yeux et les mains doivent être protégés ; parfois une blouse et une aspiration aussi."},
+  {id:95, theme:"Enjeux énergétiques", type:"multiple", q:"Quels sont des avantages de l'énergie solaire ? (plusieurs réponses)", options:["Source renouvelable","Émissions directes de CO2 nulles lors de la production","Dépendance totale aux ressources locales","Production intermittente selon le soleil"], correct:[0,1,3], explanation:"Solaire = renouvelable et sans émissions directes, mais intermittent; dépendance locale n'est pas un avantage universel."},
+  {id:96, theme:"Enjeux énergétiques", type:"simple", q:"Qu'est-ce que la transition énergétique ?", options:["Augmenter l'usage des énergies fossiles","Passage progressif vers des sources d'énergie plus durables","Arrêter toute production d'énergie","Construire plus de centrales à charbon"], correct:[1], explanation:"La transition énergétique vise à remplacer peu à peu les énergies fossiles par des solutions plus durables."},
+  {id:97, theme:"Développement durable", type:"simple", q:"Quel gaz contribue fortement à l'effet de serre et au réchauffement climatique ?", options:["Azote (N2)","Dioxyde de carbone (CO2)","Hélium (He)","Argon (Ar)"], correct:[1], explanation:"Le CO2 est un gaz à effet de serre important lié aux activités humaines."},
+  {id:98, theme:"Enjeux énergétiques", type:"multiple", q:"Quelles sont des solutions pour réduire la consommation d'énergie dans les transports ? (plusieurs réponses)", options:["Transports en commun","Vélo et mobilité active","Amélioration du rendement des moteurs","Augmentation systématique des voitures individuelles"], correct:[0,1,2], explanation:"TIC, transports collectifs, mobilité active et moteurs efficients réduisent la consommation."},
+  {id:99, theme:"Sécurité chimique", type:"simple", q:"Que signifie la mention 'toxique' sur une étiquette de produit chimique ?", options:["Produit sans danger","Produit dangereux pour la santé en cas d'exposition","Produit comestible","Produit inerte"], correct:[1], explanation:"La mention 'toxique' signale un danger pour la santé; il faut manipuler avec précautions."},
+  {id:100, theme:"Développement durable", type:"simple", q:"Quel principe limite le gaspillage d'énergie dans les appareils électriques ?", options:["Faire fonctionner tout le temps","Mettre en veille et optimiser l'efficacité","Augmenter la tension","Utiliser des ampoules à incandescence"], correct:[1], explanation:"La mise en veille et l'efficacité énergétique réduisent les consommations inutiles."}
+];
+
+
+/* ===========================
+   Fonctions utilitaires
+   =========================== */
+
+function shuffleArray(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]] = [a[j],a[i]];
+  }
+  return a;
+}
+
+let currentSet = []; // 10 questions in current session
+let answered = false;
+
+/* Rendre 10 questions aléatoires */
+function pickQuestions(){
+  const shuffled = shuffleArray(QUESTIONS);
+  currentSet = shuffled.slice(0,10);
+}
+
+/* Génération du HTML pour les questions */
+function renderQuestions(){
+  const container = document.getElementById('questionsContainer');
+  container.innerHTML = '';
+  currentSet.forEach((qq, idx) => {
+    const qn = idx+1;
+    const div = document.createElement('div');
+    div.className = 'question';
+    div.id = 'q-'+qq.id;
+    let typeLabel = qq.type === 'multiple' ? 'Choix multiple' : 'Choix simple';
+    div.innerHTML = `
+      <div class="q-header">
+        <div class="q-theme">${qq.theme}</div>
+        <div class="q-type">${typeLabel}</div>
+      </div>
+      <div class="q-title">${qn}. ${qq.q}</div>
+      <div class="answers" data-qid="${qq.id}"></div>
+    `;
+    const answersDiv = div.querySelector('.answers');
+    // Create inputs: radio for simple, checkbox for multiple
+    qq.options.forEach((opt, i) => {
+      const aid = `q${qq.id}_opt${i}`;
+      const wrapper = document.createElement('label');
+      wrapper.className = 'answer';
+      const input = document.createElement('input');
+      input.type = (qq.type==='multiple') ? 'checkbox':'radio';
+      input.name = 'q-'+qq.id + ((qq.type==='multiple') ? '[]':'' );
+      input.value = i;
+      input.id = aid;
+      wrapper.appendChild(input);
+      const span = document.createElement('span');
+      span.innerText = opt;
+      wrapper.appendChild(span);
+      answersDiv.appendChild(wrapper);
+    });
+    container.appendChild(div);
+  });
+  // scroll top
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* Calculer la note et préparer la correction */
+function evaluate(){
+  if(answered) return;
+  answered = true;
+  let totalScore = 0;
+  const resultArea = document.getElementById('resultArea');
+  resultArea.innerHTML = '';
+  const details = document.createElement('div');
+  currentSet.forEach((qq, idx) => {
+    const qElem = document.getElementById('q-'+qq.id);
+    const inputs = qElem.querySelectorAll('input');
+    // collect selected indices
+    const selected = [];
+    inputs.forEach(inp => { if(inp.checked) selected.push(Number(inp.value)); });
+    // scoring
+    let qscore = 0;
+    if(qq.type === 'simple'){
+      // exact match required
+      if(selected.length === 1 && selected[0] === qq.correct[0]) qscore = 1;
+    } else {
+      // multiple: partial credit
+      const setCorrect = new Set(qq.correct);
+      let correctSelected = 0;
+      let incorrectSelected = 0;
+      selected.forEach(s => { if(setCorrect.has(s)) correctSelected++; else incorrectSelected++; });
+      // compute raw = correctSelected - incorrectSelected (not below 0), divide by nb correct
+      const raw = Math.max(0, correctSelected - incorrectSelected);
+      qscore = qq.correct.length > 0 ? (raw / qq.correct.length) : 0;
+      if(qscore < 0) qscore = 0;
+      if(qscore > 1) qscore = 1;
+    }
+    totalScore += qscore;
+
+    // Build detail card
+    const div = document.createElement('div');
+    div.className = 'detail ' + (qscore>=1 ? 'correct' : (qscore>0 ? 'correct' : 'wrong'));
+    const num = idx+1;
+    const title = document.createElement('div');
+    title.innerHTML = `<strong>${num}. ${qq.q}</strong> <span class="muted">(${qq.theme} — ${qq.type === 'multiple' ? 'Choix multiple' : 'Choix simple'})</span>`;
+    div.appendChild(title);
+
+    // Show user's answer
+    const your = document.createElement('div');
+    your.className = 'small';
+    if(selected.length === 0) your.innerHTML = `<em>Tu n'as pas répondu.</em>`;
+    else {
+      const list = selected.map(i => `<span class="${qq.correct.includes(i)?'correct-answer':'bad-selection'}">${qq.options[i]}</span>`).join(', ');
+      your.innerHTML = `<strong>Ta réponse :</strong> ${list}`;
+    }
+    div.appendChild(your);
+
+    // Correct answers
+    const corr = document.createElement('div');
+    const correctList = qq.correct.map(i => qq.options[i]).join('; ');
+    corr.innerHTML = `<strong>Réponse attendue :</strong> ${correctList}`;
+    div.appendChild(corr);
+
+    // Explication
+    const expl = document.createElement('div');
+    expl.className = 'explanation';
+    expl.innerHTML = `<strong>Explication :</strong> ${qq.explanation}`;
+    div.appendChild(expl);
+
+    resultArea.appendChild(div);
+  });
+
+  // Compute note out of 10 (each question worth 1 point summed over 10 questions)
+  const scoreOutOf10 = Math.round((totalScore / currentSet.length) * 10 * 10) / 10; // rounded to 0.1
+  const summary = document.createElement('div');
+  summary.className = 'result card';
+  summary.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center">
+    <div>
+      <div class="score">${scoreOutOf10} / 10</div>
+      <div class="muted">Note calculée sur 10. Chaque question vaut 1 point ; pour les QCM multiples, crédit partiel possible.</div>
+    </div>
+    <div style="text-align:right">
+      <div class="small">Bonnes réponses totales : <strong>${Math.round(totalScore * 10)/10}</strong> (sur ${currentSet.length})</div>
+    </div>
+  </div>`;
+  resultArea.prepend(summary);
+  // scroll to result
+  summary.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+/* Continuer : nouvelle sélection de 10 questions */
+function continuer(){
+  answered = false;
+  pickQuestions();
+  renderQuestions();
+  // clear result area
+  document.getElementById('resultArea').innerHTML = '';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* Reset form (uncheck) */
+function resetForm(){
+  const inputs = document.querySelectorAll('#quizForm input');
+  inputs.forEach(i => i.checked = false);
+  // also clear evaluation
+  answered = false;
+  document.getElementById('resultArea').innerHTML = '';
+}
+
+/* Event listeners */
+document.addEventListener('DOMContentLoaded', () => {
+  pickQuestions();
+  renderQuestions();
+
+  document.getElementById('validateBtn').addEventListener('click', evaluate);
+  document.getElementById('validateBtnBottom').addEventListener('click', evaluate);
+  document.getElementById('continueBtn').addEventListener('click', continuer);
+  document.getElementById('continueBtnBottom').addEventListener('click', continuer);
+  document.getElementById('resetBtn').addEventListener('click', resetForm);
+});
+</script>
+</body>
+</html>
